@@ -1,0 +1,79 @@
+@import "./_fonts";
+
+$orange: rgb(249, 102, 0);
+$blue: rgb(13, 0, 157);
+$white: #FFFFFF;
+
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	font-family: "Myriad Pro Regular", Helvetica, sans-serif;
+}
+
+.wrapper{
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+header{
+	text-align: center;
+
+	.topBar{
+		margin: 0;
+		padding: 20px;
+		background-color: $blue;
+
+		h1{
+			color: $white;
+			padding: 10px;
+			margin: 0;
+		}
+	}
+
+	nav{
+		background-color: $white;
+		color: $blue;
+		border-bottom: 1px solid #DDDDDD;
+
+		a{
+			color: $blue;
+			text-decoration: none;
+			display: inline-block;
+			padding: 10px 20px;
+			margin: 0 0 -1px 0;
+			border-bottom: 3px solid transparent;
+
+			&:hover{
+				color: $orange;
+				border-bottom-color: $orange;
+			}
+		}
+	}
+}
+
+.page{
+	div.wrapper{
+		padding: 20px;
+		border-left: 1px solid desaturate(lighten($blue, 60), 100);
+		border-right: 1px solid desaturate(lighten($blue, 60), 100);
+	}
+
+	table{
+		width: 100%;
+
+		thead{
+			font-weight: bold;
+
+			tr td{
+				border-bottom: 1px solid #DDD;
+			}
+		}
+	}
+}
