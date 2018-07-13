@@ -1,6 +1,8 @@
 import React from "react";
 import things from "../things";
 
+import Filter from "./Filter";
+
 export default class Result extends React.Component {
 
 	constructor(props) {
@@ -35,61 +37,17 @@ export default class Result extends React.Component {
 					});
 				}
 
-				let resultElement = this.json2table(result.data);
 				this.setState({
-					resultElement: resultElement
+					data: result.data
 				});
 			});
 	}
 
-	/**
-	 * Method that converts a JSON object to an HTML table.
-	 * @param data
-	 * @returns {*}
-	 */
-	json2table(data) {
-		if(data.length > 0){
-			let fieldNames = Object.keys(data[0]);
-
-			return (
-				<table>
-					<thead>
-					<tr>
-						{fieldNames.map(f => {
-							return (
-								<td key={f}>{f}</td>
-							);
-						})}
-					</tr>
-					</thead>
-					<tbody>
-					{
-						data.map(r => {
-							return (
-								<tr key={r}>{
-									fieldNames.map(f => {
-										return (<td key={r[f]}>{r[f]}</td>);
-									})
-								}</tr>
-							);
-						})
-					}
-					</tbody>
-				</table>
-			);
-		}
-		else{
-			return (<table> </table>);
-		}
-	}
-
 	render() {
-		let Result = () => this.state.resultElement || <p>No results</p>;
-
 		return (
 			<div className="page">
 				<div className="wrapper">
-					<Result />
+					<Filter data={this.state.data} />
 				</div>
 			</div>
 		);
