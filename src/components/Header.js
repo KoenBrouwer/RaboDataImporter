@@ -8,6 +8,9 @@ class Header extends React.Component {
 			<header>
 				<div className="topBar">
 					<div className="wrapper">
+						<div className="logo">
+							<img src="https://www.rabobank.nl/static/generic/css/images/s14/rabobank-logo.png" alt="Logo" />
+						</div>
 						<h1>Rabobank Data Dashboard ™</h1>
 					</div>
 				</div>
