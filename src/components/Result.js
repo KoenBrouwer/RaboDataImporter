@@ -21,6 +21,16 @@ export default class Result extends React.Component {
 
 				if(result.data.length > 0){
 					result.data.map(r => {
+						r["Date of birth"] = r["Date of birth"] || null;
+
+						if(r["Date of birth"]){
+							r.Age = (new Date() - new Date(r["Date of birth"]));
+							r.Age = Math.floor(r.Age / (1000 * 60 * 60 * 24 * 7 * 52));
+						}
+						else{
+							r.Age = "?";
+						}
+
 						return r;
 					});
 				}
