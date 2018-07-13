@@ -36,6 +36,7 @@ export default class Result extends React.Component {
 						if(r["Date of birth"]){
 							r.Age = (new Date() - new Date(r["Date of birth"]));
 							r.Age = Math.floor(r.Age / (1000 * 60 * 60 * 24 * 7 * 52));
+							r["Date of birth"] = new Date(r["Date of birth"]).toLocaleDateString();
 						}
 						else{
 							r.Age = "?";
