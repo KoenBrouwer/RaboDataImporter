@@ -6,24 +6,37 @@ export default class Filter extends React.Component {
 		super(props);
 
 		this.state = {
-			data: null
+			data: props.data
 		};
 
 		this.onChangeFilter = this.onChangeFilter.bind(this);
 		this.applyFilter = this.applyFilter.bind(this);
 	}
 
+	/**
+	 * This method is called after the component is updated. In this case when the data prop is changed.
+	 * @param oldProps
+	 * @param oldState
+	 */
 	componentDidUpdate(oldProps, oldState) {
+		/* Check if "data" was changed, or the state */
 		if(oldProps.data !== this.props.data || oldState.data !== this.state.data){
+			/* If so, save the changed data in the state */
 			this.setState({
 				data: this.props.data
 			});
 		}
 	}
 
+	/**
+	 * This method is called after the value in the minIssueCount form field is changed
+	 * @param e
+	 */
 	onChangeFilter(e) {
+		/* Get the value from the input field */
 		let issueCount = e.target.value;
 
+		/* Save it in the state as a filter function */
 		this.setState({
 			filter: [
 				(data => {
@@ -35,14 +48,17 @@ export default class Filter extends React.Component {
 		});
 	}
 
+	/**
+	 * Method that filters the given data with all the filters that are saved in the state
+	 * @param data
+	 * @returns {*} The filtered data
+	 */
 	applyFilter(data) {
-		console.log("applyFilter:", [data, this.state.filter]);
-
-		this.state = this.state || {};
-		this.state.filter = this.state.filter || [];
+		let state = this.state || {};
+		state.filter = state.filter || [];
 
 		if(data){
-			this.state.filter.forEach(f => {
+			state.filter.forEach(f => {
 				data = f(data);
 			});
 		}
@@ -100,15 +116,26 @@ export default class Filter extends React.Component {
 	}
 
 	render() {
+		/**
+		 * Result is the output of json2table as a component, that can be loaded at anytime during rendering
+		 * @returns {*}
+		 * @constructor
+		 */
 		let Result = () => {
+			/* Get all data from the state */
 			let data = this.state.data;
+
+			/* Apply all filters to the data */
 			data = this.applyFilter(data);
+
+			/* And return the generated HTML */
 			return this.json2table(data);
 		};
 
 		return (
 			<div>
 				<div className="filterOptions">
+					<h2>Filter options</h2>
 					<label htmlFor="limit">Minimal issue count:</label>
 					<input type="number" min="0" id="limit" onChange={this.onChangeFilter} />
 				</div>

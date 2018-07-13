@@ -1,15 +1,4 @@
-/* "Myriad Regular" */
-@font-face {
-  font-family: "Myriad Pro Regular";
-  src: url("./fonts/MYRIADPRO-REGULAR.woff") format("woff"); }
-/* "Myriad SemiBold" */
-@font-face {
-  font-family: "Myriad Pro SemiBold";
-  src: url("./fonts/MYRIADPRO-SEMIBOLD.woff") format("woff"); }
-/* "Myriad Bold" */
-@font-face {
-  font-family: "Myriad Pro Bold";
-  src: url("./fonts/MYRIADPRO-BOLD.woff") format("woff"); }
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -18,21 +7,34 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "Myriad Pro Regular", Helvetica, sans-serif; }
+  font-family: "PT Sans", Helvetica, sans-serif;
+  color: #4d4d4d; }
 
 .wrapper {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 20px; }
 
+h1, h2, thead {
+  color: #0d009d; }
+
 header {
   text-align: center; }
   header .topBar {
     margin: 0;
     padding: 20px;
-    background-color: #0d009d; }
+    background-color: #FFFFFF; }
+    header .topBar div.wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+    header .topBar div.logo {
+      margin: 0 80px 0 0; }
+      header .topBar div.logo img {
+        object-fit: contain;
+        max-height: 80px; }
     header .topBar h1 {
-      color: #FFFFFF;
       padding: 10px;
       margin: 0; }
   header nav {
@@ -54,6 +56,43 @@ header {
   padding: 20px;
   border-left: 1px solid #e8e8e8;
   border-right: 1px solid #e8e8e8; }
+.page div.filterOptions {
+  width: 100%;
+  display: block;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #e8e8e8; }
+  .page div.filterOptions h2 {
+    margin: 0;
+    padding: 10px 0; }
+  .page div.filterOptions label {
+    display: block; }
+.page form.fileUpload {
+  display: block;
+  text-align: center; }
+  .page form.fileUpload input[type=file] {
+    display: none; }
+  .page form.fileUpload label {
+    font-size: 120%;
+    color: #0d009d; }
+    .page form.fileUpload label:hover {
+      color: #f96600;
+      cursor: pointer; }
+  .page form.fileUpload input[type=submit] {
+    background-color: #f96600;
+    font-size: 100%;
+    border-radius: 6px/20px;
+    border: none;
+    padding: 8px 16px;
+    min-width: 120px;
+    text-align: center;
+    display: block;
+    color: #FFFFFF;
+    margin: 10px auto; }
+    .page form.fileUpload input[type=submit]:hover {
+      background-color: #80BA27;
+      color: #FFFFFF;
+      cursor: pointer; }
 .page table {
   width: 100%; }
   .page table thead {

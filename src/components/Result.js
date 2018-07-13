@@ -1,6 +1,7 @@
 import React from "react";
-import things from "../things";
+import {Link} from "react-router-dom";
 
+import things from "../things";
 import Filter from "./Filter";
 
 export default class Result extends React.Component {
@@ -8,12 +9,17 @@ export default class Result extends React.Component {
 	constructor(props) {
 		super(props);
 
+		/* Initial state is that data is null */
 		this.state = {
 			data: null,
 		};
 	}
 
+	/**
+	 * This method is called after the component is mounted.
+	 */
 	componentDidMount() {
+		/* Ask the API for data */
 		fetch(things.API, {
 			method: "GET"
 		})
@@ -21,7 +27,9 @@ export default class Result extends React.Component {
 			.then(result => {
 				result.data = result.data || {};
 
+				/* If there's any data */
 				if(result.data.length > 0){
+					/* Map the data to add a field called "Age" based on the "Date of birth" field. */
 					result.data.map(r => {
 						r["Date of birth"] = r["Date of birth"] || null;
 
@@ -37,6 +45,7 @@ export default class Result extends React.Component {
 					});
 				}
 
+				/* And save the data in the state */
 				this.setState({
 					data: result.data
 				});
@@ -44,13 +53,24 @@ export default class Result extends React.Component {
 	}
 
 	render() {
-		return (
-			<div className="page">
-				<div className="wrapper">
-					<Filter data={this.state.data} />
+		if(this.state.data){
+			return (
+				<div className="page">
+					<div className="wrapper">
+						<Filter data={this.state.data} />
+					</div>
 				</div>
-			</div>
-		);
+			);
+		}
+		else{
+			return (
+				<div className="page">
+					<div className="wrapper">
+						<p>No data. Why not <Link to="/import">import some data</Link>?</p>
+					</div>
+				</div>
+			);
+		}
 	}
 
 }

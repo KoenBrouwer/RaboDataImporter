@@ -1,8 +1,10 @@
-@import "./_fonts";
+@import "./fonts";
 
 $orange: rgb(249, 102, 0);
 $blue: rgb(13, 0, 157);
+$green: #80BA27;
 $white: #FFFFFF;
+$borderColor: desaturate(lighten($blue, 60), 100);
 
 *{
 	-webkit-box-sizing: border-box;
@@ -13,7 +15,8 @@ $white: #FFFFFF;
 body{
 	padding: 0;
 	margin: 0;
-	font-family: "Myriad Pro Regular", Helvetica, sans-serif;
+	font-family: "PT Sans", Helvetica, sans-serif;
+	color: darken($white, 70);
 }
 
 .wrapper{
@@ -22,16 +25,35 @@ body{
 	padding: 0 20px;
 }
 
+h1, h2, thead{
+	color: $blue;
+}
+
 header{
 	text-align: center;
 
 	.topBar{
 		margin: 0;
 		padding: 20px;
-		background-color: $blue;
+		background-color: $white;
+
+		div.wrapper{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+
+		div.logo{
+			img{
+				object-fit: contain;
+				max-height: 80px;
+			}
+
+			margin: 0 80px 0 0;
+		}
 
 		h1{
-			color: $white;
 			padding: 10px;
 			margin: 0;
 		}
@@ -61,8 +83,62 @@ header{
 .page{
 	div.wrapper{
 		padding: 20px;
-		border-left: 1px solid desaturate(lighten($blue, 60), 100);
-		border-right: 1px solid desaturate(lighten($blue, 60), 100);
+		border-left: 1px solid $borderColor;
+		border-right: 1px solid $borderColor;
+	}
+
+	div.filterOptions{
+		width: 100%;
+		display: block;
+		margin: 0 0 20px 0;
+		padding: 0 0 20px 0;
+		border-bottom: 1px solid $borderColor;
+
+		h2{
+			margin: 0;
+			padding: 10px 0;
+		}
+
+		label{
+			display: block;
+		}
+	}
+
+	form.fileUpload{
+		display: block;
+		text-align: center;
+
+		input[type=file]{
+			display: none;
+		}
+		label{
+			font-size: 120%;
+			color: $blue;
+
+			&:hover{
+				color: $orange;
+				cursor: pointer;
+			}
+		}
+
+		input[type=submit]{
+			background-color: $orange;
+			font-size: 100%;
+			border-radius: 6px/20px;
+			border: none;
+			padding: 8px 16px;
+			min-width: 120px;
+			text-align: center;
+			display: block;
+			color: $white;
+			margin: 10px auto;
+
+			&:hover{
+				background-color: $green;
+				color: $white;
+				cursor: pointer;
+			}
+		}
 	}
 
 	table{
