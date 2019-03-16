@@ -1,6 +1,5 @@
 # Rabobank Data Importer
 Small App in React, that I've built for Rabobank as a test assignment.
-See the live demo [here](http://rabobank.kbrouwer.nl/).
 
 # Assignment
 Create a web application that is capable of importing the attached csv-file and visualize it in the front-end.
